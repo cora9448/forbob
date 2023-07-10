@@ -4,7 +4,6 @@ on: workflow_dispatch
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -18,8 +17,8 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
-      - name: Display Python version
-        uses: actions/upload-artifact@v3
+      - name: Save output as artifact
+        uses: actions/upload-artifact@v2
         with:
-          name: code-coverage-report
-          path: forbob
+          name: python-version
+          path: ${{ github.workspace }}/python-version.txt
